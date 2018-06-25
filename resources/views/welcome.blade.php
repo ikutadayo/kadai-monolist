@@ -14,5 +14,6 @@
 @endsection
 
 @section('content')
-    テスト
+    テスト <br>
+    Sho Ikuta
 @endsection
