@@ -14,6 +14,6 @@
 @endsection
 
 @section('content')
-    テスト <br>
-    Sho Ikuta
+    @include('items.items')
+    {!! $items->render() !!}
 @endsection

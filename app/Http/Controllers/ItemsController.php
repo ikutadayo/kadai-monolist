@@ -1,4 +1,13 @@
-use \App\Item;
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
+
+use App\Item;
+
 
   class ItemsController extends Controller
   {
@@ -17,7 +26,7 @@ use \App\Item;
                 'hits' => 20,
             ]);
 
-            // 扱い易いように Item としてインスタンスを作成する（保存はしない）
+
             foreach ($rws_response->getData()['Items'] as $rws_item) {
                 $item = new Item();
                 $item->code = $rws_item['Item']['itemCode'];
@@ -33,4 +42,17 @@ use \App\Item;
             'items' => $items,
         ]);
     }
-  }
+ 
+    public function show($id)
+    {
+      $item = Item::find($id);
+      $want_users = $item->want_users;
+      $have_users = $item->have_users;
+
+      return view('items.show', [
+          'item' => $item,
+          'want_users' => $want_users,
+          'have_users' => $have_users,
+      ]);
+    }
+}
