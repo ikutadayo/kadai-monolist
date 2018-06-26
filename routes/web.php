@@ -20,7 +20,8 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
-
+Route::get('ranking/want', 'RankingController@want')->name('ranking.want');
+Route::get('ranking/have', 'RankingController@have')->name('ranking.have');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('items', 'ItemsController', ['only' => ['create', 'show']]);
@@ -30,4 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     
      Route::post('have', 'ItemUserController@have')->name('item_user.have');
      Route::delete('have', 'ItemUserController@dont_have')->name('item_user.dont_have');
+
+    
+    
 });
